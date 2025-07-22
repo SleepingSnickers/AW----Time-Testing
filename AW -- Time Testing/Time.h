@@ -33,6 +33,11 @@ public:
 
 	Time operator+ (const Time&) const;
 	Time operator- (const Time&) const;
+	bool operator== (const Time&) const;
+	bool operator< (const Time&) const;
+	bool operator> (const Time&) const;
+	friend ostream& operator<<(ostream&, const Time&);
+	explicit operator int() const;
 };
 
 #endif

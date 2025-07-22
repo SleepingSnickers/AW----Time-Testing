@@ -8,29 +8,35 @@ using namespace std;
 void assignmentTest();
 void testTimeAddition();
 void testTimeSubtraction();
-//void testTimeRelationalOperators();
-//void testTimeOutStreamOperator();
-//void testTimeIntegerConversion();
+void testTimeRelationalOperators();
+void testTimeOutStreamOperator();
+void testTimeIntegerConversion();
 
 int main() {
 	assignmentTest();
+	cout << endl;
+
 	testTimeAddition();
+	cout << endl;
+
 	testTimeSubtraction();
-	//testTimeRelationalOperators();
-	//testTimeOutStreamOperator();
-	//testTimeIntegerConversion();
+	cout << endl;
+
+	testTimeRelationalOperators();
+	cout << endl;
+
+	testTimeOutStreamOperator();
+	cout << endl;
+
+	testTimeIntegerConversion();
+	cout << endl;
 
 	return 0;
 }
 
 void assignmentTest() {
-	Time time1;
-	Time time2;
-
-	time2.setDays(21);
-	time2.setHours(14);
-	time2.setMinutes(06);
-	time2.setSeconds(55);
+	Time time1(3, 5, 9, 10);
+	Time time2(27, 4, 31, 7);
 
 	cout << "Time 1: " << endl;
 	cout << "Days: " << time1.getDays() << endl;
@@ -73,14 +79,51 @@ void testTimeSubtraction() {
 	cout << "The difference of time one and time two is " << difference.getDays() << " days, " << difference.getHours() << " hours, " << difference.getMinutes() << " minutes, and " << difference.getSeconds() << " seconds." << endl;
 }
 
-//void testTimeRelationalOperators() {
-//
-//}
-//
-//void testTimeOutStreamOperator() {
-//
-//}
-//
-//void testTimeIntegerConversion() {
-//
-//}
+void testTimeRelationalOperators() {
+	Time time1(3, 5, 9, 10);
+	Time time2(27, 4, 31, 7);
+
+	if (time1 == time2) {
+		cout << "Time one == time two" << endl;
+	}
+	else {
+		cout << "Time one != time two" << endl;
+	}
+
+	if (time1 < time2) {
+		cout << "Time one < time two" << endl;
+	}
+	else {
+		cout << "Time one > time two" << endl;
+	}
+	
+}
+
+void testTimeOutStreamOperator() {
+	Time time1(3, 5, 9, 10);
+	Time time2(27, 4, 31, 7);
+
+	cout << time1 << endl;
+	cout << endl;
+	cout << time2 << endl;
+}
+
+void testTimeIntegerConversion() {
+	Time time1(3, 5, 9, 10);
+	Time time2(27, 4, 31, 7);
+
+	int totalSecs1 = static_cast<int>(time1);
+	int totalSecs2 = static_cast<int>(time2);
+
+	cout << "Days: " << time1.getDays() << endl;
+	cout << "Hours: " << time1.getHours() << endl;
+	cout << "Minutes: " << time1.getMinutes() << endl;
+	cout << "Seconds: " << time1.getSeconds() << endl;
+	cout << "Amount of seconds in the time as an int: " << totalSecs1 << endl << endl;
+
+	cout << "Days: " << time2.getDays() << endl;
+	cout << "Hours: " << time2.getHours() << endl;
+	cout << "Minutes: " << time2.getMinutes() << endl;
+	cout << "Seconds: " << time2.getSeconds() << endl;
+	cout << "Amount of seconds in the time as an int: " << totalSecs2 << endl << endl;
+}

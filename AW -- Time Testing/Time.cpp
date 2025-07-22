@@ -115,3 +115,30 @@ Time Time::operator- (const Time& right) const {
 
 	return Time(totalDays, totalHours, totalMins, totalSecs);
 }
+
+bool Time::operator== (const Time& right) const {
+	return this->days == right.days && this->hours == right.hours && this->minutes == right.minutes && this->seconds == right.seconds;
+}
+
+bool Time::operator< (const Time& right) const {
+	if (days != right.days) return days < right.days;
+	if (hours != right.hours) return hours < right.hours;
+	if (minutes != right.minutes) return minutes < right.minutes;
+	return seconds < right.seconds;
+}
+
+bool Time::operator> (const Time& right) const {
+	if (days != right.days) return days > right.days;
+	if (hours != right.hours) return hours > right.hours;
+	if (minutes != right.minutes) return minutes > right.minutes;
+	return seconds > right.seconds;
+}
+
+ostream& operator<<(ostream& out, const Time& right) {
+	out << right.getDays() << "d " << right.getHours() << "h " << right.getMinutes() << "m " << right.getSeconds() << "s";
+	return out;
+}
+
+Time::operator int() const {
+	return ((this->days * 24 + this->hours) * 60 + this->minutes) * 60 + this->seconds;
+}
