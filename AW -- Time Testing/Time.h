@@ -19,6 +19,8 @@ public:
 	Time(int, int, int);
 	Time(int, int);
 
+	Time(const Time&);
+
 	int getDays() const;
 	void setDays(int);
 
@@ -31,13 +33,16 @@ public:
 	int getSeconds() const;
 	void setSeconds(int);
 
+	Time& operator= (const Time&);
 	Time operator+ (const Time&) const;
 	Time operator- (const Time&) const;
 	bool operator== (const Time&) const;
 	bool operator< (const Time&) const;
 	bool operator> (const Time&) const;
+	bool operator<= (const Time&) const;
+	bool operator>= (const Time&) const;
 	friend ostream& operator<<(ostream&, const Time&);
-	explicit operator int() const;
+	operator int() const;
 };
 
 #endif

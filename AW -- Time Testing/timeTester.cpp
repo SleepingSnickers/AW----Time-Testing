@@ -97,6 +97,12 @@ void testTimeRelationalOperators() {
 		cout << "Time one > time two" << endl;
 	}
 	
+	if (time1 <= time2) {
+		cout << "Time one <= time two" << endl;
+	}
+	else {
+		cout << "Time one > time two" << endl;
+	}
 }
 
 void testTimeOutStreamOperator() {

@@ -32,6 +32,13 @@ Time::Time(int hours, int minutes) : Time(0, hours, minutes, 0) {
 
 }
 
+Time::Time(const Time& time) {
+	this->days = time.days;
+	this->hours = time.hours;
+	this->minutes = time.minutes;
+	this->seconds = time.seconds;
+}
+
 int Time::getDays() const {
 	return days;
 }
@@ -71,6 +78,16 @@ void Time::setSeconds(int seconds) {
 	this->minutes %= 60;
 	this->days += this->hours / 24;
 	hours %= 24;
+}
+
+Time& Time::operator= (const Time& right) {
+	if (this != &right) {
+		this->days = right.days;
+		this->hours = right.hours;
+		this->minutes = right.minutes;
+		this->seconds = right.seconds;
+	}
+	return *this;
 }
 
 Time Time::operator+ (const Time& right) const {
@@ -134,8 +151,16 @@ bool Time::operator> (const Time& right) const {
 	return seconds > right.seconds;
 }
 
+bool Time::operator<= (const Time& right) const {
+	return !(*this < right);
+}
+
+bool Time::operator>= (const Time& right) const {
+	return !(*this > right);
+}
+
 ostream& operator<<(ostream& out, const Time& right) {
-	out << right.getDays() << "d " << right.getHours() << "h " << right.getMinutes() << "m " << right.getSeconds() << "s";
+	out << right.getDays() << " days " << right.getHours() << " hours " << right.getMinutes() << " minutes " << right.getSeconds() << " seconds";
 	return out;
 }
 
