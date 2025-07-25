@@ -14,13 +14,17 @@ private:
 	int seconds;
 
 public:
+	//default constructor
 	Time();
+	//alternate constructor
 	Time(int, int, int, int);
 	Time(int, int, int);
 	Time(int, int);
 
+	//copy constructor
 	Time(const Time&);
 
+	//getters/setters
 	int getDays() const;
 	void setDays(int);
 
@@ -33,6 +37,7 @@ public:
 	int getSeconds() const;
 	void setSeconds(int);
 
+	//bunchhhh of relational operators
 	Time& operator= (const Time&);
 	Time operator+ (const Time&) const;
 	Time operator- (const Time&) const;
@@ -41,7 +46,9 @@ public:
 	bool operator> (const Time&) const;
 	bool operator<= (const Time&) const;
 	bool operator>= (const Time&) const;
+	//declare ostream a friend
 	friend ostream& operator<<(ostream&, const Time&);
+	//object converter overload
 	operator int() const;
 };
 

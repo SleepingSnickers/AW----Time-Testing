@@ -4,6 +4,7 @@
 
 using namespace std;
 
+//default constructor
 Time::Time() {
 	days = 0;
 	hours = 0;
@@ -11,6 +12,7 @@ Time::Time() {
 	seconds = 0;
 }
 
+//alternate constructors, converting everything into seconds makes it possible to format without going over time conventions (ex. not saying 159 seconds rather than 2 minutes 39 seconds)
 Time::Time(int days, int hours, int minutes, int seconds) {
 	int total = ((days * 24 + hours) * 60 + minutes) * 60 + seconds;
 
@@ -32,6 +34,7 @@ Time::Time(int hours, int minutes) : Time(0, hours, minutes, 0) {
 
 }
 
+//copy constructor, no pointers so its all an easy copy
 Time::Time(const Time& time) {
 	this->days = time.days;
 	this->hours = time.hours;
@@ -39,6 +42,7 @@ Time::Time(const Time& time) {
 	this->seconds = time.seconds;
 }
 
+//getters/setters
 int Time::getDays() const {
 	return days;
 }
@@ -51,6 +55,7 @@ int Time::getHours() const {
 	return hours;
 }
 
+//divides the inputted hours by 24, allowing the amount of days in the total hours to be determined. Then it gets the % 24 of the inputted hours to show how many are left after removing days
 void Time::setHours(int hours) {
 	this->hours = hours % 24;
 	this->days += hours / 24;
@@ -60,6 +65,7 @@ int Time::getMinutes() const {
 	return minutes;
 }
 
+//exact same thing as above, only the amount of minutes is added
 void Time::setMinutes(int minutes) {
 	hours += minutes / 60;
 	this->minutes = minutes % 60;
@@ -71,6 +77,7 @@ int Time::getSeconds() const {
 	return seconds;
 }
 
+//exact same thing as above, only the amount of seconds is added
 void Time::setSeconds(int seconds) {
 	this->minutes += seconds / 60;
 	this->seconds = seconds % 60;
@@ -80,6 +87,7 @@ void Time::setSeconds(int seconds) {
 	hours %= 24;
 }
 
+//relational operators
 Time& Time::operator= (const Time& right) {
 	if (this != &right) {
 		this->days = right.days;
@@ -159,11 +167,13 @@ bool Time::operator>= (const Time& right) const {
 	return !(*this > right);
 }
 
+//allows everything to be easily formatted with <<
 ostream& operator<<(ostream& out, const Time& right) {
 	out << right.getDays() << " days " << right.getHours() << " hours " << right.getMinutes() << " minutes " << right.getSeconds() << " seconds";
 	return out;
 }
 
+//changes Time into int
 Time::operator int() const {
 	return ((this->days * 24 + this->hours) * 60 + this->minutes) * 60 + this->seconds;
 }
